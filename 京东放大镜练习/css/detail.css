@@ -23,7 +23,7 @@
     border: 1px solid #ccc;
 }
 
-.mask {
+/* .mask {
     display: none;
     position: absolute;
     top: 0;
@@ -53,7 +53,9 @@
     position: absolute;
     top: 0;
     left: 0;
-}
+} */
+
+
 
 .preview_list {
     position: relative;
