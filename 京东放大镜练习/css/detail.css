@@ -18,7 +18,8 @@
 }
 
 .preview_img {
-    position: relative;
+    /* position: relative; */
+    position: relative; /*子绝父相 mask绝对了，这里要相对*/
     height: 398px;
     border: 1px solid #ccc;
 }
@@ -55,6 +56,38 @@
     left: 0;
 } */
 
+.mask {
+    display: none;/*因为最开始是看不见的，默认隐藏*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    background: #FEDE4F;
+    opacity: .5;
+    border: 1px solid #ccc;
+    cursor: move; /*鼠标经过，样式发生变化*/
+}
+
+.big {
+    display: none;/*因为最开始是看不见的，默认隐藏*/
+    position: absolute;
+    left: 410px;
+    top: 0;
+    width: 500px;
+    height: 500px;
+    background-color: pink;
+    z-index: 999;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+
+/*这里一定要记得！*/
+.big img{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
 
 
 .preview_list {
