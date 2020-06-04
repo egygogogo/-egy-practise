@@ -58,28 +58,32 @@
             background: url(images/cloud.gif) no-repeat;
         }
     </style>
-    <script src="animate.js"></script>
-    <script>
-        window.addEventListener('load',function(){
-            var c_nav = document.querySelector('.c-nav');
-            var cloud = document.querySelector('.cloud');
-            var lis = c_nav.querySelectorAll('li');
-            var current = 0;
-            for (var i = 0; i < lis.length;i++){
-                lis[i].addEventListener('mouseenter',function(){
-                    animate(cloud,this.offsetLeft);
-                });
 
-                lis[i].addEventListener('mouseout',function(){
-                    animate(cloud,current);
-                });
+    <script src="jquery.min.js"></script>
+
+    <script>
+        $(function(){
+            var currentleft = 0;
+            var current = 0;
+            $('.c-nav ul').children('li').hover(function(){
+                // console.log($(this).offset().left);
+                currentleft = $(this).position().left;
+                // console.log( currentleft);
                 
-                lis[i].addEventListener('click',function(){
-                   current = this.offsetLeft ;
-                   
-                });
-            }
+                $('.cloud').animate({
+                    left : currentleft})
+            },
+            function(){
+                $('.cloud').animate({
+                    left : current})
+            });
+
+            $('.c-nav ul').children('li').click(function(){
+                current = $(this).position.left;
+                $('.cloud').css("left","current");
+            })
         })
+        
     </script>
 </head>
 
