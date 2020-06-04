@@ -58,6 +58,29 @@
             background: url(images/cloud.gif) no-repeat;
         }
     </style>
+    <script src="animate.js"></script>
+    <script>
+        window.addEventListener('load',function(){
+            var c_nav = document.querySelector('.c-nav');
+            var cloud = document.querySelector('.cloud');
+            var lis = c_nav.querySelectorAll('li');
+            var current = 0;
+            for (var i = 0; i < lis.length;i++){
+                lis[i].addEventListener('mouseenter',function(){
+                    animate(cloud,this.offsetLeft);
+                });
+
+                lis[i].addEventListener('mouseout',function(){
+                    animate(cloud,current);
+                });
+                
+                lis[i].addEventListener('click',function(){
+                   current = this.offsetLeft ;
+                   
+                });
+            }
+        })
+    </script>
 </head>
 
 <body>
