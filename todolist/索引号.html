@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <!-- 他们是亲兄弟 可以获取索引号 -->
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+    </div>
+    <ul>
+        <!-- 但是这里是表兄弟，$(this)无法给他们编号 -->
+        <li><a href="#">a</a></li>
+        <li><a href="#">b</a></li>
+        <li><a href="#">c</a></li>
+    </ul>
+    <script>
+        $("div a").click(function() {
+            console.log($(this).index());
+        })
+        $("ul a").click(function() {
+            console.log($(this).index());
+        })
+    </script>
+</body>
+
+</html>
