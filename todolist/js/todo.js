@@ -41,13 +41,13 @@ $(function () {
         $.each(data, function (i, n) { //!这里的data不用括号！老是记不住！！
             if (n.done) {
                 $("ul").prepend("<li><input type='checkbox' checked='checked' > <p>" + n.title + "</p> <a href=javascript:; id = " + i + "></a>  </li>");
-                donecount ++;
+                donecount++;
             } else {
                 $("ol").prepend("<li><input type='checkbox' > <p>" + n.title + "</p> <a href=javascript:; id = " + i + "></a>  </li>");
                 todocount++;
             }
 
-            $("#todocount").text(todocount);//!这里赋值都不会！
+            $("#todocount").text(todocount); //!这里赋值都不会！
             $("#donecount").text(donecount);
 
         })
@@ -61,11 +61,36 @@ $(function () {
         load();
     })
 
-    $("ol,ul").on("click", "input", function () {
+    $("ol,ul").on("click", "input:first", function () {
         var data = getData();
         var index = $(this).siblings("a").attr("id");
-        data[index].done = $(this).prop("checked"); //!这里的prop是jquery
+        data[index].done = $(this).prop("checked"); //!这里的prop是jquery的方法
         setData(data);
         load();
+    })
+
+    $("ol,ul").on("dblclick", "p", function () {
+        // var str = $(this).text();
+        // console.log(str);
+        var data = getData();
+        var index = $(this).siblings("a").attr("id");
+        var str = data[index].title;
+        // console.log(str);
+        // window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+        $(this).html('<input type = "text"  value=' + str + '>');
+        
+        
+        $(this).on("keydown",function(event) {
+            if(event.keyCode === 13){
+                alert( $(this).val());//todo 为什么这里的this指的是window？
+            }
+            
+            data[index].title = $(this).val();
+            setData(date);
+            console.log(getDate());
+            
+        })
+
+
     })
 })
