@@ -70,27 +70,25 @@ $(function () {
     })
 
     $("ol,ul").on("dblclick", "p", function () {
-        // var str = $(this).text();
-        // console.log(str);
         var data = getData();
         var index = $(this).siblings("a").attr("id");
         var str = data[index].title;
         // console.log(str);
-        // window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+        window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
         $(this).html('<input type = "text"  value=' + str + '>');
-        
-        
-        $(this).on("keydown",function(event) {
-            if(event.keyCode === 13){
-                alert( $(this).val());//todo 为什么这里的this指的是window？
+        $(this).children().select();
+        $(this).children().on("keydown", function (event) { //!这里是取的p的孩子input
+            if (event.keyCode === 13) {
+                data[index].title = $(this).val();
+                // console.log( $(this).val());
+                setData(data);
+                load();
             }
-            
-            data[index].title = $(this).val();
-            setData(date);
-            console.log(getDate());
-            
+        })
+        $(this).children().on("blur", function () {
+            load();
         })
 
-
     })
+
 })
